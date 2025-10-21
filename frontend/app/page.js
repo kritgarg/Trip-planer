@@ -1,6 +1,7 @@
 "use client";
 import TripForm from "../components/Tripform";
 import { motion } from "framer-motion";
+import AboutUsSection from "../components/info";
 
 export default function Home() {
   return (
@@ -102,6 +103,9 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* About Us Section */}
+      <AboutUsSection />
     </main>
   );
 }
