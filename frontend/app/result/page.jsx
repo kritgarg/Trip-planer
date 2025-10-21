@@ -78,21 +78,20 @@ export default function Result() {
   };
 
   return (
-    <main className="p-6 md:p-10 bg-gradient-to-br from-sky-50 via-cyan-50 to-purple-50 min-h-screen">
+    <main className="p-6 md:p-10 bg-[#121212] min-h-screen font-mono">
       {error ? (
-        <p className="text-center text-red-600">{error}</p>
+        <p className="text-center text-red-500">{error}</p>
       ) : !itinerary ? (
         <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
           <EarthLoader />
 
           <motion.p
-  className="text-slate-500"
-  animate={{ opacity: [0.3, 1, 0.3], y: [0, -5, 0] }}
-  transition={{ duration: 1.5, repeat: Infinity }}
->
-  Loading your trip...
-</motion.p>
-
+            className="text-[#00FFFF]"
+            animate={{ opacity: [0.3, 1, 0.3], y: [0, -5, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          >
+            Loading your trip...
+          </motion.p>
         </div>
       ) : (
         <motion.div
@@ -102,45 +101,46 @@ export default function Result() {
           className="max-w-3xl mx-auto space-y-6"
         >
           {/* Header Card */}
-          <div className="bg-white/80 backdrop-blur-md shadow-sm rounded-2xl p-6 border border-slate-100">
+          <div className="bg-[#1A1A1A] shadow-lg rounded-2xl p-6 border border-[#00FFFF]/20">
             <div className="text-center mb-4">
-              <h1 className="text-3xl md:text-4xl font-extrabold text-slate-800">
+              <h1 className="text-3xl md:text-4xl font-extrabold text-[#00FFFF]">
                 Your {itinerary.destination || meta.destination} Adventure
               </h1>
-              <p className="text-slate-500 mt-1">
+              <p className="text-[#E0E0E0] mt-1">
                 A perfectly crafted {meta.days}-day itinerary just for you
               </p>
             </div>
             {/* Chips */}
             <div className="flex flex-wrap items-center justify-center gap-2 mb-4">
-              <span className="px-3 py-1 rounded-full text-sm bg-sky-50 text-sky-700 border border-sky-100">
+              {/* Note: Using custom colors for unique contrast in chips */}
+              <span className="px-3 py-1 rounded-full text-sm bg-cyan-900/50 text-cyan-300 border border-cyan-700">
                 {meta.destination || itinerary.destination}
               </span>
               {meta.days && (
-                <span className="px-3 py-1 rounded-full text-sm bg-emerald-50 text-emerald-700 border border-emerald-100">
+                <span className="px-3 py-1 rounded-full text-sm bg-green-900/50 text-green-300 border border-green-700">
                   {meta.days} days
                 </span>
               )}
               {meta.budget && (
-                <span className="px-3 py-1 rounded-full text-sm bg-amber-50 text-amber-700 border border-amber-100">
+                <span className="px-3 py-1 rounded-full text-sm bg-yellow-900/50 text-yellow-300 border border-yellow-700">
                   {meta.budget} total
                 </span>
               )}
               {meta.prefs && (
-                <span className="px-3 py-1 rounded-full text-sm bg-violet-50 text-violet-700 border border-violet-100">
+                <span className="px-3 py-1 rounded-full text-sm bg-fuchsia-900/50 text-fuchsia-300 border border-fuchsia-700">
                   {meta.prefs}
                 </span>
               )}
             </div>
             {/* Actions */}
             <div className="flex flex-wrap items-center justify-center gap-3">
-              <button onClick={handleShare} className="px-4 py-2 rounded-xl bg-slate-800 text-white hover:bg-slate-900 transition">
+              <button onClick={handleShare} className="px-4 py-2 rounded-xl bg-[#00FFFF] text-[#121212] font-bold hover:bg-cyan-300 transition">
                 Share
               </button>
-              <button onClick={handleDownload} className="px-4 py-2 rounded-xl bg-white text-slate-800 border border-slate-200 hover:bg-slate-50 transition">
+              <button onClick={handleDownload} className="px-4 py-2 rounded-xl bg-[#1A1A1A] text-[#00FFFF] border border-[#00FFFF] hover:bg-[#333333] transition">
                 Download
               </button>
-              <Link href="/" className="px-4 py-2 rounded-xl bg-amber-500 text-white hover:bg-amber-600 transition">
+              <Link href="/" className="px-4 py-2 rounded-xl bg-[#E0E0E0] text-[#121212] font-bold hover:bg-white transition">
                 Plan Another Trip
               </Link>
             </div>
@@ -159,18 +159,18 @@ export default function Result() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 + 0.1 }}
-                className="bg-white/90 backdrop-blur rounded-2xl border border-slate-100 overflow-hidden shadow-sm"
+                className="bg-[#1A1A1A] rounded-2xl border border-[#00FFFF]/20 overflow-hidden shadow-lg"
               >
                 {/* Day header */}
-                <div className="flex items-center justify-between px-5 py-4 bg-slate-50/70">
+                <div className="flex items-center justify-between px-5 py-4 bg-[#282828] border-b border-[#00FFFF]/10">
                   <div>
-                    <h3 className="font-semibold text-lg text-slate-800">{title}</h3>
+                    <h3 className="font-semibold text-lg text-[#00FFFF]">{title}</h3>
                     {isObject && day.summary && (
-                      <p className="text-sm text-slate-500">{day.summary}</p>
+                      <p className="text-sm text-[#E0E0E0]">{day.summary}</p>
                     )}
                   </div>
                   {dayCost !== null && (
-                    <div className="text-right text-slate-700 text-sm">
+                    <div className="text-right text-green-400 text-sm">
                       <span className="font-semibold">${dayCost.toFixed(0)}</span>
                     </div>
                   )}
@@ -187,38 +187,38 @@ export default function Result() {
                       const description = isActObj ? act.description : null;
                       const price = isActObj ? act.price : null;
                       return (
-                        <div key={i} className="flex items-start gap-3 p-3 rounded-xl border border-slate-100 bg-slate-50/60">
-                          <div className="shrink-0 mt-1 text-sky-600 text-xs font-semibold w-16">
+                        <div key={i} className="flex items-start gap-3 p-3 rounded-xl border border-[#00FFFF]/10 bg-[#282828]">
+                          <div className="shrink-0 mt-1 text-cyan-400 text-xs font-semibold w-16">
                             {time ? time : ""}
                           </div>
                           <div className="flex-1">
                             <div className="flex items-start justify-between gap-3">
                               <div>
-                                <div className="font-medium text-slate-800">{name || String(act)}</div>
+                                <div className="font-medium text-white">{name || String(act)}</div>
                                 {location && (
-                                  <div className="text-sm text-slate-500">{location}</div>
+                                  <div className="text-sm text-[#E0E0E0]">{location}</div>
                                 )}
                               </div>
                               {price ? (
-                                <div className="text-sm text-slate-700 font-semibold">${price}</div>
+                                <div className="text-sm text-green-400 font-semibold">${price}</div>
                               ) : null}
                             </div>
                             {description && (
-                              <p className="text-sm text-slate-700 mt-1">{description}</p>
+                              <p className="text-sm text-[#E0E0E0] mt-1">{description}</p>
                             )}
                           </div>
                         </div>
                       );
                     })
                   ) : isObject && day.details ? (
-                    <p className="text-slate-700">{day.details}</p>
+                    <p className="text-[#E0E0E0]">{day.details}</p>
                   ) : (
-                    <p className="text-slate-700">{String(day)}</p>
+                    <p className="text-[#E0E0E0]">{String(day)}</p>
                   )}
                 </div>
 
                 {/* Footer note */}
-                <div className="px-5 py-3 bg-slate-50/70 text-sm text-slate-500">
+                <div className="px-5 py-3 bg-[#282828] text-sm text-[#E0E0E0]/80">
                   Tip: Bring a camera — perfect for photos!
                 </div>
               </motion.section>
