@@ -1,10 +1,21 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------- */
+/* --- NEW THEME COLORS: DARK & FUTURISTIC (GLOBAL) --- */
+/* ---------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Main Background and Text */
+  --background: #121212; /* Dark Charcoal */
+  --foreground: #E0E0E0; /* Light Gray Text */
+  
+  /* Accent Colors */
+  --accent-primary: #00FFFF; /* Electric Cyan (Main Highlight) */
+  --card-bg: #1A1A1A; /* Darker Gray for Cards */
+  --card-border: #00FFFF33; /* Cyan border (20% opacity) */
+  --button-text: #121212; /* Dark Text for Bright Buttons */
 }
 
+/* Ensure the theme variables are used (if needed by your theme setup) */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -12,37 +23,44 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Force dark theme colors for this component's look */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #121212;
+    --foreground: #E0E0E0;
   }
 }
 
+/* Apply base colors and the chosen font (mono/monospace) */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* The TSX uses font-mono, so we should define a suitable monospace font here */
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 }
 
-/* Earth Loader Styles */
+/* ---------------------------------------------------- */
+/* --- EARTH LOADER STYLES (UPDATED FOR DARK MODE) ---- */
+/* ---------------------------------------------------- */
 .earth-loader {
-  --watercolor: #3344c1;
-  --landcolor: #7cc133;
+  /* Changed colors to fit the dark theme */
+  --watercolor: var(--card-bg); /* Dark water color */
+  --landcolor: #39FF14; /* Neon Green land color */
   width: 7.5em;
   height: 7.5em;
   background-color: var(--watercolor);
   position: relative;
   overflow: hidden;
   border-radius: 50%;
-  box-shadow: inset 0em 0.5em rgba(255, 255, 255, 0.25), inset 0em -0.5em rgba(0, 0, 0, 0.25);
-  border: solid 0.15em white;
+  /* Adjusted shadow for dark context */
+  box-shadow: inset 0em 0.5em rgba(255, 255, 255, 0.1), inset 0em -0.5em rgba(0, 0, 0, 0.4);
+  border: solid 0.15em var(--accent-primary); /* Use Cyan for the outer ring */
   animation: startround 1s;
   animation-iteration-count: 1;
 }
 
 .earth p {
-  color: white;
+  color: var(--accent-primary); /* Cyan text color */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,6 +69,7 @@ body {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
+/* The rest of the Earth Loader keyframes remain the same */
 .earth-loader svg:nth-child(1) {
   position: absolute;
   bottom: -2em;
@@ -94,7 +113,8 @@ body {
   }
   100% {
     filter: brightness(100%);
-    box-shadow: inset 0em 0.5em rgba(255, 255, 255, 0.25), inset 0em -0.5em rgba(0, 0, 0, 0.25);
+    /* Use updated shadow */
+    box-shadow: inset 0em 0.5em rgba(255, 255, 255, 0.1), inset 0em -0.5em rgba(0, 0, 0, 0.4);
   }
 }
 
